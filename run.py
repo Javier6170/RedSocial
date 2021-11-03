@@ -16,4 +16,4 @@ def iniciar() -> App:
 app = iniciar()
 
 if __name__ == "__main__":
-    waitress.serve(app, port=8080, url_scheme="http")
+    waitress.serve(app, port=8081, url_scheme="http")
