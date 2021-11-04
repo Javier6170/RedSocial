@@ -105,6 +105,8 @@
         }
 
         input[type="email"],
+        input[type="usuario"],
+        input[type="apellido"],
         input[type="password"] {
             border: none;
             border-bottom: 2px solid #021e26;
@@ -228,19 +230,26 @@
                 </div>
 
                 <div class="input-group">
+                    <input type="usuario" class="form-input" name="form-input" id="reg-usuario">
+                    <label class="label" for="reg-correo">Nombre</label>
+                </div>
+
+                <div class="input-group">
+                    <input type="apellido" class="form-input" name="form-input" id="reg-apellido">
+                    <label class="label" for="reg-correo">Apellido</label>
+                </div>
+
+                <div class="input-group">
                     <input type="email" class="form-input" name="form-input" id="reg-correo">
                     <label class="label" for="reg-correo">Usuario</label>
                 </div>
+                
 
                 <div class="input-group">
                     <input type="password" class="form-input" name="form-input" id="reg-pass">
                     <label class="label" for="reg-pass">Contraseña</label>
                 </div>
 
-                <div class="input-group">
-                    <input type="password" class="form-input" name="form-input" id="reg-rep-pass">
-                    <label class="label" for="reg-rep-pass">Repetir Contraseña</label>
-                </div>
 
                 <div class="input-group">
                     <input type="submit" class="form-input" value="Registrate">
