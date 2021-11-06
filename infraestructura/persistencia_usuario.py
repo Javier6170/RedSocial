@@ -1,6 +1,7 @@
 import sqlite3
 
 
+
 class PersistenciaUsuario():
 
     def __init__(self):
@@ -41,7 +42,6 @@ class PersistenciaUsuario():
 
     def cargar_todo(self):
         from dominio.Usuario import Usuario
-
         cursor = self.con.cursor()
         usuarios = cursor.execute("select nombre,apellido,usuario,"
                                   "password "
@@ -52,3 +52,26 @@ class PersistenciaUsuario():
             cuenta_cargada = Usuario(nombre, apellido, usuario, password)
             cuentas.append(cuenta_cargada)
         return cuentas
+
+    def cargar(self, id):
+        from dominio.Usuario import Usuario
+        cursor = self.con.cursor()
+        usuarios = cursor.execute(
+            "select nombre,apellido,usuario,password"
+            " from Usuario where id = ?", (id,))
+        cuenta_cargada = None
+        for nombre, apellido, usuario, password in usuarios:
+            cuenta_cargada = Usuario(nombre, apellido, usuario, password)
+        return cuenta_cargada
+
+    def actualizar(self, usuario, id):
+        print(id)
+        query = 'update Usuario set nombre=?,apellido=?,password=?,' \
+                'where id=?'
+        cursor = self.con.cursor()
+        cursor.execute(query, (usuario.nombre,
+                               usuario.apellido,
+                               usuario.password,
+                               id))
+        self.con.commit()
+

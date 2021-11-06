@@ -7,3 +7,4 @@ class Usuario(Cuenta):
         self.apellido = apellido
         self.usuario = usuario
         self.password = password
+        self.id = None
