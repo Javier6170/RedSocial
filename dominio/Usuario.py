@@ -18,6 +18,16 @@ class Usuario(Cuenta):
         persitencia_usuario = PersistenciaUsuario()
         persitencia_usuario.guardar(self, usuario)
 
+    def _actualizar(self, id):
+        from infraestructura.persistencia_usuario import PersistenciaUsuario
+        persitencia_usuario = PersistenciaUsuario()
+        persitencia_usuario.actualizar(self, id)
+
+    def _guardar(self, usuario):
+        from infraestructura.persistencia_usuario import PersistenciaUsuario
+        persitencia_usuario = PersistenciaUsuario()
+        persitencia_usuario.guardar(self, usuario)
+
     def guardar(self):
         if self.id is None:
             self._guardar(self.usuario)
