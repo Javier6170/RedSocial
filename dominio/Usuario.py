@@ -32,10 +32,12 @@ class Usuario(Cuenta):
         self.password = dict_params.get('password', self.password)
 
     def _actualizar(self, id):
+        from infraestructura.persistencia_usuario import PersistenciaUsuario
         persitencia_usuario = PersistenciaUsuario()
         persitencia_usuario.actualizar(self, id)
 
     def _guardar(self, usuario):
+        from infraestructura.persistencia_usuario import PersistenciaUsuario
         persitencia_usuario = PersistenciaUsuario()
         persitencia_usuario.guardar(self, usuario)
 
