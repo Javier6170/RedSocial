@@ -1,7 +1,6 @@
 import sqlite3
 
 
-
 class PersistenciaUsuario():
 
     def __init__(self):
@@ -74,4 +73,3 @@ class PersistenciaUsuario():
                                usuario.password,
                                id))
         self.con.commit()
-

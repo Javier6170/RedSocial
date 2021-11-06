@@ -1,4 +1,5 @@
 from dominio.Cuenta import Cuenta
+from infraestructura.persistencia_usuario import PersistenciaUsuario
 
 
 class Usuario(Cuenta):
