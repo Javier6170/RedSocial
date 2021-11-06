@@ -4,3 +4,6 @@ class Cuenta:
 
     def cargar(self, serial):
         pass
+
+    def actualizar(self, serial):
+        pass
