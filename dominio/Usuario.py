@@ -26,6 +26,7 @@ class Usuario(Cuenta):
         else:
             self._actualizar(id)
 
+
     def update(self, dict_params):
         self.nombre = dict_params.get('nombre', self.nombre)
         self.apellido = dict_params.get('apellido', self.apellido)
