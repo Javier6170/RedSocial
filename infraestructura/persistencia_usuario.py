@@ -16,7 +16,8 @@ class PersistenciaUsuario():
             cursor = self.con.cursor()
             query = "CREATE TABLE " \
                     "Usuario(" \
-                    "usuario Text UNIQUE," \
+                    "id Integer PRIMARY KEY Autoincrement," \
+                    "usuario Text," \
                     "nombre Text," \
                     "apellido text," \
                     "password text)"
@@ -25,18 +26,18 @@ class PersistenciaUsuario():
             pass
 
     def guardar(self, usuario):
-            cursor = self.con.cursor()
-            query = "insert into Usuario" \
-                    "(nombre, " \
-                    "apellido, " \
-                    "usuario, " \
-                    "password)" \
-                    "values(?,?,?,?)"
-            cursor.execute(query, (usuario.nombre,
-                                   usuario.apellido,
-                                   usuario.usuario,
-                                   usuario.password))
-            self.con.commit()
+        cursor = self.con.cursor()
+        query = "insert into Usuario" \
+                "(nombre, " \
+                "apellido, " \
+                "usuario, " \
+                "password)" \
+                "values(?,?,?,?)"
+        cursor.execute(query, (usuario.nombre,
+                               usuario.apellido,
+                               usuario.usuario,
+                               usuario.password))
+        self.con.commit()
 
     def cargar_todo(self):
         from dominio.Usuario import Usuario
