@@ -19,25 +19,24 @@ class PersistenciaUsuario():
                     "usuario Text UNIQUE," \
                     "nombre Text," \
                     "apellido text," \
-                    "password text"
+                    "password text)"
             cursor.execute(query)
         except sqlite3.OperationalError as ex:
             pass
 
     def guardar(self, usuario):
-        cursor = self.con.cursor()
-        query = "insert into Usuario" \
-                "(nombre, " \
-                "apellido, " \
-                "usuario, " \
-                "password)" \
-                "values(" \
-                " ?,?,?,?)"
-        cursor.execute(query, (usuario.nombre,
-                               usuario.apellido,
-                               usuario.usuario,
-                               usuario.password))
-        self.con.commit()
+            cursor = self.con.cursor()
+            query = "insert into Usuario" \
+                    "(nombre, " \
+                    "apellido, " \
+                    "usuario, " \
+                    "password)" \
+                    "values(?,?,?,?)"
+            cursor.execute(query, (usuario.nombre,
+                                   usuario.apellido,
+                                   usuario.usuario,
+                                   usuario.password))
+            self.con.commit()
 
     def cargar_todo(self):
         from dominio.Usuario import Usuario
@@ -65,11 +64,12 @@ class PersistenciaUsuario():
 
     def actualizar(self, usuario, id):
         print(id)
-        query = 'update Usuario set nombre=?,apellido=?,password=?,' \
+        query = 'update Usuario set nombre=?,apellido=?,usuario=?,password=?,' \
                 'where id=?'
         cursor = self.con.cursor()
         cursor.execute(query, (usuario.nombre,
                                usuario.apellido,
+                               usuario.usuario,
                                usuario.password,
                                id))
         self.con.commit()
