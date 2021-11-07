@@ -17,8 +17,8 @@ class PersistenciaUsuario():
             query = "CREATE TABLE " \
                     "Usuario(" \
                     "id Integer PRIMARY KEY Autoincrement," \
-                    "usuario Text," \
-                    "nombre Text," \
+                    "usuario text," \
+                    "nombre text," \
                     "apellido text," \
                     "password text)"
             cursor.execute(query)
