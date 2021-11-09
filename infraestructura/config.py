@@ -18,6 +18,7 @@ class Config():
         cls.con = sqlite3.connect("RedYe!.sqlite")
         cls.__crear_tabla()
 
+
     @classmethod
     def __crear_tabla(cls):
         try:
