@@ -3,13 +3,14 @@ import falcon
 from falcon import API
 import waitress
 
-from controlador.red_social_controller import RedSocialController
+from controlador.red_social_controller import RedSocialController, Registro
 
 
 def iniciar() -> App:
     # run:app -b 0.0.0.0:2020 --workers 1 -t 240
     api = App()
-    api.add_route("/redSocial/", RedSocialController())
+    api.add_route("/redSocial/index.html", RedSocialController())
+    api.add_route("/redSocial/Registro.html", Registro())
     return api
 
 
