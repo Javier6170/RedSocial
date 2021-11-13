@@ -14,8 +14,16 @@ class RedSocialController():
 
     def on_post(self, req, resp):
         cuenta = Usuario(**req.media)
-        cuenta.guardar()
-        resp.status = falcon.HTTP_CREATED
+        if cuenta.guardar() is None:
+            resp.status = falcon.HTTP_200
+            resp.content_type = 'text/html'
+            with open("C:/Users/Javier/PycharmProjects/RedSocial/controlador/falloRegistro.html", 'rb') as f:
+                resp.body = f.read()
+        else:
+            resp.status = falcon.HTTP_200
+            resp.content_type = 'text/html'
+            with open("C:/Users/Javier/PycharmProjects/RedSocial/controlador/correctoRegistro.html", 'rb') as f:
+                resp.body = f.read()
 
     def on_put(self, req, resp, id):
         cuenta_repositorio = PersistenciaUsuario()

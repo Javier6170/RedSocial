@@ -9,7 +9,7 @@ from controlador.red_social_controller import RedSocialController
 def iniciar() -> App:
     # run:app -b 0.0.0.0:2020 --workers 1 -t 240
     api = App()
-    api.add_route("/red-social/", RedSocialController())
+    api.add_route("/redSocial/", RedSocialController())
     return api
 
 
