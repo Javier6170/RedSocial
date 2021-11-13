@@ -25,8 +25,6 @@ class PersistenciaUsuario():
         except sqlite3.OperationalError as ex:
             pass
 
-
-
     def guardar(self, usuario):
         cursor = self.con.cursor()
         query = "insert into Usuario" \
@@ -70,6 +68,16 @@ class PersistenciaUsuario():
         cursor = self.con.cursor()
         usuarios = cursor.execute("SELECT nombre,apellido,usuario,password FROM Usuario "
                                   "WHERE usuario=?", (usuario.usuario,))
+        personaExistente = None
+        for nombre, apellido, usuario, password in usuarios:
+            personaExistente = Usuario(nombre, apellido, usuario, password)
+        return personaExistente
+
+    def validarInicioSesion(self, usuario, password):
+        from dominio.Usuario import Usuario
+        cursor = self.con.cursor()
+        usuarios = cursor.execute("SELECT nombre,apellido,usuario,password FROM Usuario "
+                                  "WHERE usuario=? AND password = ?", (usuario, password))
         personaExistente = None
         for nombre, apellido, usuario, password in usuarios:
             personaExistente = Usuario(nombre, apellido, usuario, password)
