@@ -73,11 +73,11 @@ class PersistenciaUsuario():
             personaExistente = Usuario(nombre, apellido, usuario, password)
         return personaExistente
 
-    def validarInicioSesion(self, usuario, password):
+    def validarInicioSesion(self, usuarioInicio):
         from dominio.Usuario import Usuario
         cursor = self.con.cursor()
         usuarios = cursor.execute("SELECT nombre,apellido,usuario,password FROM Usuario "
-                                  "WHERE usuario=? AND password = ?", (usuario, password))
+                                  "WHERE usuario=? AND password = ?", (usuarioInicio.usuario, usuarioInicio.password))
         personaExistente = None
         for nombre, apellido, usuario, password in usuarios:
             personaExistente = Usuario(nombre, apellido, usuario, password)

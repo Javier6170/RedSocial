@@ -26,13 +26,6 @@ class Usuario(Cuenta):
             return "Ok"
         return None
 
-    def _validar(self, usuario, password):
-        from infraestructura.persistencia_usuario import PersistenciaUsuario
-        persitencia_usuario = PersistenciaUsuario()
-        if persitencia_usuario.validarInicioSesion(self, usuario, password) is None:
-            return False
-        return False
-
     def guardar(self):
         if self.id is None:
             if self._guardar() is None:
@@ -40,12 +33,6 @@ class Usuario(Cuenta):
             return "Ok"
         else:
             self._actualizar(id)
-
-    def validar(self, usuario, password):
-        if not self._validar(usuario, password):
-            return False
-        else:
-            return True
 
     def update(self, dict_params):
         self.nombre = dict_params.get('nombre', self.nombre)
