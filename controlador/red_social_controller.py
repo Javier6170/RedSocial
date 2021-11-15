@@ -3,6 +3,7 @@ import falcon
 from infraestructura.persistencia_usuario import PersistenciaUsuario
 
 from dominio.Usuario import Usuario
+from dominio.UserInicioSesion import UsuarioInicioSesion
 
 
 class RedSocialController():
@@ -13,7 +14,7 @@ class RedSocialController():
             resp.body = f.read()
 
     def on_post(self, req, resp):
-        cuenta = Usuario(**req.media)
+        cuenta  = UsuarioInicioSesion(**req.media)
         if not cuenta.validar():
             resp.status = falcon.HTTP_200
             resp.content_type = 'text/html'
@@ -22,7 +23,7 @@ class RedSocialController():
         else:
             resp.status = falcon.HTTP_200
             resp.content_type = 'text/html'
-            with open("C:/Users/Javier/PycharmProjects/RedSocial/controlador/correctoRegistro.html", 'rb') as f:
+            with open("C:/Users/Javier/PycharmProjects/RedSocial/controlador/Bienvenido.html", 'rb') as f:
                 resp.body = f.read()
 
     def on_put(self, req, resp, id):
@@ -40,7 +41,7 @@ class RedSocialController():
 class Registro():
     def on_get(self, req, resp):
         resp.status = falcon.HTTP_200
-        resp.content_type = 'text/html'
+        resp.content_type = 't      ext/html'
         with open("C:/Users/Javier/PycharmProjects/RedSocial/controlador/Registro.html", 'rb') as f:
             resp.body = f.read()
 
