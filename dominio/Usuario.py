@@ -10,22 +10,29 @@ class Usuario(Cuenta):
         self.password = password
         self.id = None
 
+    def __str__(self):
+        return f'{self.nombre}---{self.apellido}---{self.usuario}---{self.password}'
+
     def _actualizar(self, id):
         from infraestructura.persistencia_usuario import PersistenciaUsuario
         persitencia_usuario = PersistenciaUsuario()
         persitencia_usuario.actualizar(id)
 
-    def _guardar(self, usuario):
+    def _guardar(self):
         from infraestructura.persistencia_usuario import PersistenciaUsuario
         persitencia_usuario = PersistenciaUsuario()
-        persitencia_usuario.guardar(usuario)
+        if persitencia_usuario.validar(self) is None:
+            persitencia_usuario.guardar(self)
+            return "Ok"
+        return None
 
     def guardar(self):
         if self.id is None:
-            self._guardar(self.usuario)
+            if self._guardar() is None:
+                return None
+            return "Ok"
         else:
             self._actualizar(id)
-
 
     def update(self, dict_params):
         self.nombre = dict_params.get('nombre', self.nombre)

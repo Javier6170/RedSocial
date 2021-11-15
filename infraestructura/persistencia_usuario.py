@@ -17,8 +17,8 @@ class PersistenciaUsuario():
             query = "CREATE TABLE " \
                     "Usuario(" \
                     "id Integer PRIMARY KEY Autoincrement," \
-                    "usuario Text," \
-                    "nombre Text," \
+                    "usuario text," \
+                    "nombre text," \
                     "apellido text," \
                     "password text)"
             cursor.execute(query)
@@ -62,6 +62,26 @@ class PersistenciaUsuario():
         for nombre, apellido, usuario, password in usuarios:
             cuenta_cargada = Usuario(nombre, apellido, usuario, password)
         return cuenta_cargada
+
+    def validar(self, usuario):
+        from dominio.Usuario import Usuario
+        cursor = self.con.cursor()
+        usuarios = cursor.execute("SELECT nombre,apellido,usuario,password FROM Usuario "
+                                  "WHERE usuario=?", (usuario.usuario,))
+        personaExistente = None
+        for nombre, apellido, usuario, password in usuarios:
+            personaExistente = Usuario(nombre, apellido, usuario, password)
+        return personaExistente
+
+    def validarInicioSesion(self, usuarioInicio):
+        from dominio.Usuario import Usuario
+        cursor = self.con.cursor()
+        usuarios = cursor.execute("SELECT nombre,apellido,usuario,password FROM Usuario "
+                                  "WHERE usuario=? AND password = ?", (usuarioInicio.usuario, usuarioInicio.password))
+        personaExistente = None
+        for nombre, apellido, usuario, password in usuarios:
+            personaExistente = Usuario(nombre, apellido, usuario, password)
+        return personaExistente
 
     def actualizar(self, usuario, id):
         print(id)
