@@ -49,7 +49,6 @@ class Config():
         cursor = cls.con.cursor()
         query = "insert into UsaBase (prendido) values (?) "
         cursor.execute(query, (instacia.usaBase,))
-
         cls.con.commit()
 
     @classmethod
