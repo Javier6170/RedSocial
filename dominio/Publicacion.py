@@ -1,16 +1,21 @@
-from dominio.Usuario import Usuario
+from infraestructura.persistencia_publicacion import Persistencia_publicacion
 
+class Publicacion:
 
-class Publicacion(Usuario):
-    def __init__(self, publicacion, id_user,nombre, apellido, usuario, password):
+    def __init__(self, publicacion, id_user):
         self.publicacion = publicacion
         self.id_p = None
-        self.nombre = nombre
-        self.apellido = apellido
-        self.usuario = usuario
-        self.password = password
         self.id = id_user
-        super().__init__(nombre, apellido, usuario, password)
 
     def __str__(self):
-        return f'{self.publicacion}---{self.id_p}---'
+        return f'{self.publicacion}---{self.id_p}---{self.id}'
+
+
+    def _guardar_public(self):
+        from infraestructura.persistencia_publicacion import Persistencia_publicacion
+        persistencia_publicacion=Persistencia_publicacion()
+        persistencia_publicacion.guardar_p(self)
+
+
+
+
