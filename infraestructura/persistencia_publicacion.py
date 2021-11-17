@@ -13,30 +13,32 @@ class Persistencia_publicacion():
                 query = "CREATE TABLE " \
                         "Publicacion(" \
                         "id_p Integer PRIMARY KEY Autoincrement," \
-                        "textoArea text)"
+                        "publicacion Text,"\
+                        "id_user FORIENG KEY )"\
+
                 cursor.execute(query)
             except sqlite3.OperationalError as ex:
                 pass
 
-        def guardar(self, publicacion):
+        def guardar_p(self, publicacion):
             cursor = self.con.cursor()
             query = "insert into Publicacion" \
-                    "(textoArea)" \
+                    "(publicacion)" \
                     "values(?)"
-            cursor.execute(query, (publicacion.textoArea))
+            cursor.execute(query, (publicacion.publicacion))
+
             self.con.commit()
 
-        def cargar_todo(self):
-            from dominio.Usuario import Usuario
+        def cargar_todo_p(self):
+            from dominio.Publicacion import Publicacion
             cursor = self.con.cursor()
-            usuarios = cursor.execute("select nombre,apellido,usuario,"
-                                      "password "
-                                      " from usuario")
+            publicaciones = cursor.execute("select publicacion"
+                                      " from Publicacion")
             cuentas = []
-            for nombre, apellido, usuario, password \
-                    in usuarios:
-                cuenta_cargada = Usuario(nombre, apellido, usuario, password)
-                cuentas.append(cuenta_cargada)
+            for publicacion \
+                    in publicaciones:
+                publicacion_cargada = Publicacion(publicacion)
+                cuentas.append(publicacion_cargada)
             return cuentas
 
 

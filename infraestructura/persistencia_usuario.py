@@ -44,7 +44,7 @@ class PersistenciaUsuario():
         cursor = self.con.cursor()
         usuarios = cursor.execute("select nombre,apellido,usuario,"
                                   "password "
-                                  " from usuario")
+                                  " from Usuario")
         cuentas = []
         for nombre, apellido, usuario, password \
                 in usuarios:
