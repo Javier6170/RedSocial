@@ -1,7 +1,6 @@
-from infraestructura.persistencia_publicacion import Persistencia_publicacion
+
 
 class Publicacion:
-
     def __init__(self, publicacion, id_user):
         self.publicacion = publicacion
         self.id_p = None
@@ -10,12 +9,8 @@ class Publicacion:
     def __str__(self):
         return f'{self.publicacion}---{self.id_p}---{self.id}'
 
-
     def _guardar_public(self):
-        from infraestructura.persistencia_publicacion import Persistencia_publicacion
-        persistencia_publicacion=Persistencia_publicacion()
+        from infraestructura.persistenciapublicacion import PersistenciaPublicacion
+        persistencia_publicacion = PersistenciaPublicacion()
         persistencia_publicacion.guardar_p(self)
-
-
-
 
