@@ -19,22 +19,23 @@
         }
 
         .bg {
-            background-image: radial-gradient(circle at 14.91% 37.23%, #8958ff 0, #4d42d4 50%, #002da8 100%);
+            background: white;
             display: flex;
+            color: black;
             align-items: center;
             justify-content: center;
             font-family: Arial;
         }
 
         .span {
-            color: white;
+            color: black;
             font-family: 'Raleway', sans-serif;
             font-size: 25px;
         }
 
         .div-1 {
             float: left;
-            width: 33.3%;
+            width: 25%;
             height: 100vh;
             background: #F0F2F5;
             text-align: left;
@@ -42,7 +43,7 @@
 
         .div-2 {
             float: left;
-            width: 33.333%;
+            width: 50%;
             height: 100vh;
             align-items: center;
             text-align: center;
@@ -51,10 +52,9 @@
 
         .div-3 {
             float: left;
-            width: 33.3%;
+            width: 25%;
             height: 100vh;
             align-items: center;
-            text-align: center;
             background: #F0F2F5;
 
         }
@@ -71,25 +71,38 @@
 
         .nav-link {
             color: black;
+            text-align: left;
         }
 
-        .h3-Accesos {
+        .nav-link:hover {
+            background: #e4e6e8;
             color: black;
         }
 
+        .h3-Accesos {
+            color: #65676B;
+        }
 
+        .card-title {
+            color: black;
+        }
+
+        .card-text {
+            color: black;
+        }
     </style>
+
 </head>
 <body>
-<header>
-    <div class="px-3 bg py-2 text-white">
+<nav class="navbar navbar-expand-lg navbar-light bg-light rounded fixed-top" aria-label="Twelfth navbar example">
+    <div class="header px-3 bg py-2 fixed-top">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                     <svg class="bi me-2" width="40" height="32">
                         <use xlink:href="#bootstrap"/>
                     </svg>
-                    <span class="span"><i class="far fa-share-square"></i> RedYe!</span>
+                    <span class="span"><i class="far fa-share-square"></i><strong>RedYe!</strong></span>
                 </a>
 
                 <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
@@ -100,7 +113,10 @@
                                 <i class="fas fa-user"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesion</a>
+                                <li>
+                                    <form action="index.html" method="put">
+                                         <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> cerrar Sesion</button>
+                                    </form>
                                 </li>
                                 <li><a class="dropdown-item" href="#"><i class="fas fa-user-edit"></i> Editar
                                     Informacion</a></li>
@@ -111,11 +127,10 @@
             </div>
         </div>
     </div>
-</header>
-
-
+</nav>
+<br>
+<br>
 <div class="div-1 d-flex flex-column flex-shrink-0 p-3 text-white">
-    <hr style="color: black">
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
             <a href="#" class="nav-link active" aria-current="page">
@@ -157,19 +172,49 @@
                 <i class="fab fa-youtube"></i> Videos
             </a>
         </li>
+        <li>
+            <a href="#" class="nav-link ">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"/>
+                </svg>
+                <i class="fas fa-bookmark"></i> Recuerdos
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link ">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"/>
+                </svg>
+                <i class="fas fa-pager"></i> Paginas
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link ">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"/>
+                </svg>
+                <i class="fas fa-calendar-alt"></i> Eventos
+            </a>
+        </li>
         <hr style="color: black">
-        <h3 class="h3-Accesos">Acceso directos</h3>
+        <h5 class="h3-Accesos">Tus accesos directos</h5>
+        <li>
+            <a href="#" class="nav-link ">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"/>
+                </svg>
+                <i class="fas fa-sort-numeric-up"></i> La tienda de los nerds
+            </a>
+        </li>
     </ul>
-
 </div>
 <div class="div-2 d-flex flex-column flex-shrink-0 p-3">
     <div class="card">
         <div class="card-body">
-            <form method="post">
-                <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1"
-                           aria-describedby="emailHelp" placeholder="¿En que estas pensando?"><br>
-                </div>
+            <form action="#" method="post" id="formPublicacion">
+                <input type="text" class="form-control" id="publicacion"
+                       aria-describedby="emailHelp" name="publicacion" placeholder="¿En que estas pensando?"
+                       required><br>
                 <div class="card">
                     <div class="card-body">
                         <strong>Agregar a tu publicación</strong>
@@ -181,13 +226,76 @@
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-publicar">Publicar</button>
+                <button type="submit" class="btn btn-publicar" onclick="submitPublicar()">Publicar</button>
             </form>
         </div>
     </div>
 </div>
-<div class="div-3 d-flex flex-column flex-shrink-0 p-3 text-white">
 
+
+<div class="div-3 d-flex flex-column flex-shrink-0 p-3 text-white">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-birthday-cake"></i> Cumpleaños</h5>
+            <p class="card-text">Hoy es el cumpleaños de johan y santiago</p>
+        </div>
+    </div>
+    <br>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <hr style="color: black">
+        <h5 class="h3-Accesos">Personas que quizas conozcas</h5>
+        <li class="nav-item">
+            <a href="#" class="nav-link" aria-current="page">
+                contacto1
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link ">
+                contacto2
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link ">
+                contacto3
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link ">
+                contacto4
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link ">
+                contacto5
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link ">
+                contacto6
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link ">
+                contacto7
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav-link ">
+                contacto8
+            </a>
+        </li>
+        <hr style="color: black">
+        <h5 class="h3-Accesos">Conversaciones en grupo</h5>
+        <li>
+            <a href="#" class="nav-link ">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"/>
+                </svg>
+                <button style="border-radius: 10px; width: 25px;"><i class="fas fa-plus"></i></button>
+                Crear nuevo grupo
+            </a>
+        </li>
+    </ul>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
@@ -196,5 +304,24 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function submitPublicar() {
+        const textoPublicar = document.getElementById('publicacion').value;
+        if (textoPublicar.length != 0) {
+            swal("Buen trabajo!", "Has publicado correctamente!", "success", {
+                button: "Continuar!",
+            });
+        }
+    }
+</script>
+<script>
+    if (window.location != "https://0eaf-186-83-185-11.ngrok.io/redSocial/index.html#") {
+
+    } else {
+        window.location.assign("/redSocial/paginaPrincipal.html")
+    }
+
+</script>
 </body>
 </html>

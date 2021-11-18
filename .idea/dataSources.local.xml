@@ -13,5 +13,9 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="RedYePublicaciones!" uuid="3a2d2e8c-85f1-4d7e-b7fe-66bbc01d99f8">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

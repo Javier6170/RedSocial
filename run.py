@@ -1,8 +1,7 @@
 from falcon import App
-import falcon
-from falcon import API
 import waitress
 
+from controlador.controladorPublicaciones import ControlerPublicacion
 from controlador.red_social_controller import RedSocialController, Registro
 
 
@@ -11,6 +10,7 @@ def iniciar() -> App:
     api = App()
     api.add_route("/redSocial/index.html", RedSocialController())
     api.add_route("/redSocial/Registro.html", Registro())
+    api.add_route("/redSocial/paginaPrincipal.html", ControlerPublicacion())
     return api
 
 

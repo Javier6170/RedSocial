@@ -17,7 +17,8 @@ class PersistenciaPublicacion():
                     "Publicacion(" \
                     "id_p Integer PRIMARY KEY Autoincrement," \
                     "publicacion Text," \
-                    "id_user FOREIGN KEY )"
+                    "nombre_usuario Text,"\
+                    "apellido_usuario Text)"
             cursor.execute(query)
         except sqlite3.OperationalError as ex:
             pass
@@ -25,15 +26,19 @@ class PersistenciaPublicacion():
     def guardar_p(self, publicacion):
         cursor = self.con.cursor()
         query = "insert into Publicacion" \
-                "(publicacion)" \
-                "values(?)"
-        cursor.execute(query, (publicacion.publicacion))
+                "(publicacion," \
+                 "nombre_usuario," \
+                "apellido_usuario)" \
+                "values(?,?,?)"
+        cursor.execute(query, (publicacion.publicacion,
+                               publicacion.nombre_usuario,
+                               publicacion.apellido_usuario))
         self.con.commit()
 
     def cargar_todo_p(self):
         from dominio.Publicacion import Publicacion
         cursor = self.con.cursor()
-        publicaciones = cursor.execute("select publicacion"
+        publicaciones = cursor.execute("select publicacion,nombre_usuario,apellido_usuario"
                                        " from Publicacion")
         cuentas = []
         for publicacion \
