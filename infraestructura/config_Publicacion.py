@@ -8,7 +8,7 @@ class Config_Publicacion():
         self.usaBase = True
 
     @classmethod
-    def obtener_instancia(cls):
+    def obtener_instancia_p(cls):
         if cls.instacia is None:
             cls.instacia = cls.__load()
         return cls.instacia
@@ -16,10 +16,10 @@ class Config_Publicacion():
     @classmethod
     def connect(cls):
         cls.con = sqlite3.connect("RedYePublicaciones!.sqlite")
-        cls.__crear_tabla()
+        cls.__crear_tabla_p()
 
     @classmethod
-    def __crear_tabla(cls):
+    def __crear_tabla_p(cls):
         try:
             cursor = cls.con.cursor()
             query = "CREATE TABLE " \
@@ -31,7 +31,7 @@ class Config_Publicacion():
 
     @classmethod
     def setUsaBase(cls, usaBase):
-        instacia = cls.obtener_instancia()
+        instacia = cls.obtener_instancia_p()
         instacia.usaBase = usaBase
         cls.__update(instacia)
         cls.instacia = instacia
@@ -58,9 +58,9 @@ class Config_Publicacion():
         query = "select prendido from UsaBase limit 1"
         cursor.execute(query)
         rows = cursor.fetchall()
-        confi_instace = Config()
+        confi_instace = Config_Publicacion()
         if len(rows) == 0:
-            confi_instace = Config()
+            confi_instace = Config_Publicacion()
             cls.__save(confi_instace)
 
         else:

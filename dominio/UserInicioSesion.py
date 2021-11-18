@@ -9,12 +9,14 @@ class UsuarioInicioSesion():
     def _validar(self):
         from infraestructura.persistencia_usuario import PersistenciaUsuario
         persitencia_usuario = PersistenciaUsuario()
-        if persitencia_usuario.validarInicioSesion(self) is None:
+        user_inicio = persitencia_usuario.validarInicioSesion(self)
+        if user_inicio is None:
             return False
-        return True
+        else:
+            return user_inicio
 
     def validar(self):
         if not self._validar():
             return False
         else:
-            return True
+            return self._validar()
