@@ -8,12 +8,10 @@ from dominio.Usuario import Usuario
 from dominio.UserInicioSesion import UsuarioInicioSesion
 import tempfile
 
-temporalNombre = tempfile.TemporaryFile()
-temporalApellido = tempfile.TemporaryFile()
-
 
 class RedSocialController():
-    # Crea un archivo temporal en modo binario
+    temporalNombre = tempfile.TemporaryFile()
+    temporalApellido = tempfile.TemporaryFile()
 
     def on_get(self, req, resp):
         resp.status = falcon.HTTP_200
@@ -33,18 +31,15 @@ class RedSocialController():
             resp.content_type = 'text/html'
             with open("C:/Users/Javier/PycharmProjects/RedSocial/controlador/paginaPrincipal.html", 'rb') as f:
                 resp.body = f.read()
+            if RedSocialController.temporalNombre.closed or RedSocialController.temporalApellido.closed:
+                RedSocialController.temporalNombre = tempfile.TemporaryFile()
+                RedSocialController.temporalApellido = tempfile.TemporaryFile()
             nombre_usuario = cuenta.validar().nombre
             apellido_usuario = cuenta.validar().apellido
             bnombreUsuario = bytes(nombre_usuario, encoding="utf-8")
             bapellidoUsuario = bytes(apellido_usuario, encoding="utf-8")
-            temporalNombre.write(bnombreUsuario)
-            temporalApellido.write(bapellidoUsuario)
-
-    def temporalNombre(self):
-        return temporalNombre
-
-    def temporalApellido(self):
-        return temporalApellido
+            RedSocialController.temporalNombre.write(bnombreUsuario)
+            RedSocialController.temporalApellido.write(bapellidoUsuario)
 
     def on_put(self, req, resp, id):
         cuenta_repositorio = PersistenciaUsuario()

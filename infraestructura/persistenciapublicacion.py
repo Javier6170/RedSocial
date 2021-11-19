@@ -17,7 +17,7 @@ class PersistenciaPublicacion():
                     "Publicacion(" \
                     "id_p Integer PRIMARY KEY Autoincrement," \
                     "publicacion Text," \
-                    "nombre_usuario Text,"\
+                    "nombre_usuario Text," \
                     "apellido_usuario Text)"
             cursor.execute(query)
         except sqlite3.OperationalError as ex:
@@ -27,7 +27,7 @@ class PersistenciaPublicacion():
         cursor = self.con.cursor()
         query = "insert into Publicacion" \
                 "(publicacion," \
-                 "nombre_usuario," \
+                "nombre_usuario," \
                 "apellido_usuario)" \
                 "values(?,?,?)"
         cursor.execute(query, (publicacion.publicacion,

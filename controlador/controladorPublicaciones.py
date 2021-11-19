@@ -12,8 +12,8 @@ class ControlerPublicacion():
             resp.body = f.read()
 
     def on_post(self, req, resp):
-        nombreTemporal = RedSocialController().temporalNombre()
-        apellidoTemporal = RedSocialController().temporalApellido()
+        nombreTemporal = RedSocialController.temporalNombre
+        apellidoTemporal = RedSocialController.temporalApellido
         nombreTemporal.seek(0)
         apellidoTemporal.seek(0)
         lecturaNombre = nombreTemporal.read()
@@ -29,7 +29,7 @@ class ControlerPublicacion():
             resp.body = f.read()
 
     def on_put(self, req, resp):
-        nombreTemporal = RedSocialController().temporalNombre()
-        apellidoTemporal = RedSocialController().temporalApellido()
+        nombreTemporal = RedSocialController.temporalNombre
+        apellidoTemporal = RedSocialController.temporalApellido
         nombreTemporal.close()
         apellidoTemporal.close()
