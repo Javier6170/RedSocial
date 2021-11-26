@@ -40,8 +40,9 @@ class ControlerPublicacion():
         #with open(get_dir_project()+"/controlador/paginaPrincipal.html", 'rb') as f:
         #    resp.body = f.read()
 
-    def on_put(self, req, resp):
-        nombreTemporal = RedSocialController.temporalNombre
-        apellidoTemporal = RedSocialController.temporalApellido
-        nombreTemporal.close()
-        apellidoTemporal.close()
+
+def on_put(self, req, resp):
+    nombreTemporal = RedSocialController.temporalNombre
+    apellidoTemporal = RedSocialController.temporalApellido
+    nombreTemporal.close()
+    apellidoTemporal.close()
