@@ -214,7 +214,7 @@
 
             <div class="input-group">
                 <input type="submit" onclick="iniciarSesion()" class="form-input" value="Iniciar Sesión">
-                <p>No tienes cuenta? <a href="Registro.html" class="alt-form">Ingresa aquí</a></p>
+                <p>No tienes cuenta? <a href="/Registro" class="alt-form">Ingresa aquí</a></p>
             </div>
 
         </form>
@@ -3551,7 +3551,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "/redSocial/paginaPrincipal.html",
+            url: "/paginaPrincipal",
             timeout: 600000,
             success: function () {
                 console.log("DONE");

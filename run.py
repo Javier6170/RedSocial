@@ -8,9 +8,10 @@ from controlador.red_social_controller import RedSocialController, Registro
 def iniciar() -> App:
     # run:app -b 0.0.0.0:2020 --workers 1 -t 240
     api = App()
-    api.add_route("/redSocial/index.html", RedSocialController())
-    api.add_route("/redSocial/Registro.html", Registro())
-    api.add_route("/redSocial/paginaPrincipal.html", ControlerPublicacion())
+    api.add_route("/", RedSocialController())
+    #api.add_route("/redSocial/index.html", RedSocialController())
+    api.add_route("/Registro", Registro())
+    api.add_route("/paginaPrincipal", ControlerPublicacion())
     return api
 
 
