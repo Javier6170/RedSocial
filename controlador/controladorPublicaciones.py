@@ -28,8 +28,9 @@ class ControlerPublicacion():
         with open("C:/Users/Javier/PycharmProjects/RedSocial/controlador/paginaPrincipal.html", 'rb') as f:
             resp.body = f.read()
 
-    def on_put(self, req, resp):
-        nombreTemporal = RedSocialController.temporalNombre
-        apellidoTemporal = RedSocialController.temporalApellido
-        nombreTemporal.close()
-        apellidoTemporal.close()
+
+def on_put(self, req, resp):
+    nombreTemporal = RedSocialController.temporalNombre
+    apellidoTemporal = RedSocialController.temporalApellido
+    nombreTemporal.close()
+    apellidoTemporal.close()
