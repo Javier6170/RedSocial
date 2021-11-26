@@ -2,13 +2,15 @@ import falcon
 
 from dominio.Publicacion import Publicacion
 from controlador.red_social_controller import RedSocialController
-
+from json import dumps
+from servicios.Util import get_dir_project
+from bs4 import BeautifulSoup
 
 class ControlerPublicacion():
     def on_get(self, req, resp):
         resp.status = falcon.HTTP_200
         resp.content_type = 'text/html'
-        with open("C:/Users/Javier/PycharmProjects/RedSocial/controlador/paginaPrincipal.html", 'rb') as f:
+        with open(get_dir_project()+"/controlador/paginaPrincipal.html", 'rb') as f:
             resp.body = f.read()
 
     def on_post(self, req, resp):
@@ -23,10 +25,20 @@ class ControlerPublicacion():
         dict = {'publicacion': req.media.get('publicacion'), 'nombre_usuario': n, 'apellido_usuario': a}
         cuenta = Publicacion(**dict)
         cuenta.guardarPublicacion()
+        publicaciones = cuenta.traer_publicaciones()
+        html_page = open(get_dir_project()+"/controlador/paginaPrincipal.html", 'rb')
+        soup = BeautifulSoup(html_page, 'html.parser')
+        publis= soup.find(id="publis")
+        for pub in publicaciones:
+          new_div = soup.new_tag("div")
+          new_div.string = str(pub.publicacion)
+          publis.append(new_div)
         resp.status = falcon.HTTP_200
         resp.content_type = 'text/html'
-        with open("C:/Users/Javier/PycharmProjects/RedSocial/controlador/paginaPrincipal.html", 'rb') as f:
-            resp.body = f.read()
+        resp.body = soup.prettify()
+        
+        #with open(get_dir_project()+"/controlador/paginaPrincipal.html", 'rb') as f:
+        #    resp.body = f.read()
 
 
 def on_put(self, req, resp):

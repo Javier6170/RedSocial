@@ -7,7 +7,6 @@ class PersistenciaPublicacion():
 
     def connect(self):
         self.con = sqlite3.connect("RedYePublicaciones!.sqlite")
-        print(self.con.cursor())
         self.__crear_tabla_publicacion()
 
     def __crear_tabla_publicacion(self):
@@ -38,11 +37,11 @@ class PersistenciaPublicacion():
     def cargar_todo_p(self):
         from dominio.Publicacion import Publicacion
         cursor = self.con.cursor()
-        publicaciones = cursor.execute("select publicacion,nombre_usuario,apellido_usuario"
-                                       " from Publicacion")
+        publicaciones = cursor.execute("select publicacion,nombre_usuario,apellido_usuario,id_p"
+                                       " from Publicacion ORDER BY id_p DESC")
         cuentas = []
-        for publicacion \
-                in publicaciones:
-            publicacion_cargada = Publicacion(publicacion)
+        for publicacion in publicaciones:
+            min=list(publicacion)
+            publicacion_cargada = Publicacion(*min)
             cuentas.append(publicacion_cargada)
         return cuentas

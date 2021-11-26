@@ -1,7 +1,7 @@
 class Publicacion:
-    def __init__(self, publicacion, nombre_usuario, apellido_usuario):
+    def __init__(self, publicacion, nombre_usuario, apellido_usuario,id_p=None):
         self.publicacion = publicacion
-        self.id_p = None
+        self.id_p = id_p
         self.nombre_usuario= nombre_usuario
         self.apellido_usuario = apellido_usuario
 
@@ -15,3 +15,11 @@ class Publicacion:
 
     def guardarPublicacion(self):
         self._guardar_public()
+
+    def _traer_publicaciones(self):
+        from infraestructura.persistenciapublicacion import PersistenciaPublicacion
+        persistencia_publicacion = PersistenciaPublicacion()
+        return persistencia_publicacion.cargar_todo_p()
+
+    def traer_publicaciones(self):
+        return self._traer_publicaciones()

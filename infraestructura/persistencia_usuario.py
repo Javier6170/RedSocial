@@ -8,7 +8,6 @@ class PersistenciaUsuario():
 
     def connect(self):
         self.con = sqlite3.connect("RedYe!.sqlite")
-        print(self.con.cursor())
         self.__crear_tabla()
 
     def __crear_tabla(self):
@@ -84,7 +83,6 @@ class PersistenciaUsuario():
         return personaExistente
 
     def actualizar(self, usuario, id):
-        print(id)
         query = 'update Usuario set nombre=?,apellido=?,usuario=?,password=?,' \
                 'where id=?'
         cursor = self.con.cursor()
