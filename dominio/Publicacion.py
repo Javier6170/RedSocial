@@ -1,5 +1,5 @@
 class Publicacion:
-    def __init__(self, publicacion, nombre_usuario, apellido_usuario,id_p=None):
+    def __init__(self,id_p=None,publicacion=None, nombre_usuario=None, apellido_usuario=None):
         self.publicacion = publicacion
         self.id_p = id_p
         self.nombre_usuario= nombre_usuario

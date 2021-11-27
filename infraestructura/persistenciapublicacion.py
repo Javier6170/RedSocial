@@ -37,7 +37,7 @@ class PersistenciaPublicacion():
     def cargar_todo_p(self):
         from dominio.Publicacion import Publicacion
         cursor = self.con.cursor()
-        publicaciones = cursor.execute("select publicacion,nombre_usuario,apellido_usuario,id_p"
+        publicaciones = cursor.execute("select id_p,publicacion,nombre_usuario,apellido_usuario"
                                        " from Publicacion ORDER BY id_p DESC")
         cuentas = []
         for publicacion in publicaciones:
